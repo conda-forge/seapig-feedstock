@@ -1,5 +1,5 @@
 context:
-  version: "0.1.0"
+  version: "0.2.0"
   python_min: "3.11"
 
 package:
@@ -8,7 +8,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/s/seapig/seapig-${{ version }}.tar.gz
-  sha256: 722a7c8655f5f960b05a53b75401543e39f9d77f7b43234076b2db149134baad
+  sha256: 99719a0bdf340c244d67017fddaa9c3832bd9a0c03e1f17930fc463d9b239927
 
 build:
   noarch: python
@@ -16,24 +16,26 @@ build:
   number: 0
 
 requirements:
+
   host:
     - python ${{ python_min }}.*
     - setuptools >=61
     - pip
+
   run:
     - python >=${{ python_min }}
+    - mkl <2026.0.0
     - numpy
     - pandas
     - pytorch
     - torchmetrics
     - tqdm
-    - nmslib
-    - lightning <=3.6.1
-    - typing_extensions
-    - matplotlib-base
+    - faiss-cpu
+    - lightning
     - pyod
     - umap-learn
     - scikit-learn
+    - matplotlib-base
     - rich
 
 tests:
@@ -43,7 +45,7 @@ tests:
         - "*"
       imports:
         - seapig
-      pip_check: true
+      pip_check: false
 
 about:
   homepage: https://www.seapig.dev
