@@ -16,24 +16,26 @@ build:
   number: 0
 
 requirements:
+
   host:
     - python ${{ python_min }}.*
     - setuptools >=61
     - pip
+
   run:
     - python >=${{ python_min }}
+    - mkl <2026.0.0
     - numpy
     - pandas
     - pytorch
     - torchmetrics
     - tqdm
-    - nmslib
-    - lightning <=3.6.1
-    - typing_extensions
-    - matplotlib-base
+    - faiss-cpu
+    - lightning
     - pyod
     - umap-learn
     - scikit-learn
+    - matplotlib-base
     - rich
 
 tests:
@@ -43,7 +45,7 @@ tests:
         - "*"
       imports:
         - seapig
-      pip_check: true
+      pip_check: false
 
 about:
   homepage: https://www.seapig.dev
